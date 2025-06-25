@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./MenuOverlay.css";
 
 const socialIcons = [
-  // You can use SVGs or emojis for demo!
+  { href: "https://linkedin.com", label: "LinkedIn", icon: "🔗" },
   { href: "https://instagram.com", label: "Instagram", icon: "📸" },
   { href: "https://facebook.com", label: "Facebook", icon: "👍" },
   { href: "https://twitter.com", label: "Twitter", icon: "🐦" },
