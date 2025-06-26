@@ -1,91 +1,104 @@
 .navbar {
+  width: 100%;
   position: fixed;
-  top: 0; left: 0; width: 100vw;
-  z-index: 1001;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 24px 7vw 12px 7vw;
-  background: rgba(36, 24, 8, 0.44);
-  color: #fff;
-  transition: background 0.44s, box-shadow 0.28s;
-  box-shadow: 0 1px 12px rgba(80,50,22,0.03);
-  -webkit-backdrop-filter: blur(4px);
-   backdrop-filter: blur(4px);
-  
-}
-.navbar.solid {
-  background: rgba(36, 24, 8, 0.92);
-  box-shadow: 0 4px 28px #633a1e29;
-}
-.navbar.transparent {
-  background: rgba(36, 24, 8, 0.27);
-  box-shadow: none;
-}
-.navbar-logo {
+  top: 0; left: 0;
+  z-index: 999;
+  background: linear-gradient(90deg, #432c12cc 10%, #2d1405bb 90%);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
+  transition: background 0.37s;
+  min-height: 66px;
+  box-shadow: 0 3px 24px #432c1244;
 }
-.navbar-logo img {
-  width: 42px;
-  vertical-align: middle;
-  margin-right: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 12px #ffb10044;
-}
-.navbar-logo .brand {
-  font-weight: 700;
-  font-size: 1.48rem;
-  color: #ffe5be;
-  font-family: 'Inter', Arial, sans-serif;
-  letter-spacing: 1.6px;
-}
-.navbar-logo a {
-  text-decoration: none;
-  display: flex; align-items: center;
-  gap: 8px;
-}
+.navbar.hide { opacity: 0; pointer-events: none; }
 
-.navbar-links {
-  display: flex; gap: 44px;
-  font-size: 1.12rem; font-weight: 500;
+.navbar-container {
+  width: 97vw;
+  max-width: 1460px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.navbar-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-decoration: none;
+}
+.navbar-logo-img {
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+  box-shadow: 0 2px 14px #eeb88d45;
+  background: #fff6ed;
+}
+.navbar-logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.29rem;
+  color: #eeb88d;
+  letter-spacing: 1.3px;
+  font-weight: 800;
+  text-shadow: 0 2px 8px #fff8e523;
+}
+.navbar-links-desktop {
+  display: flex;
+  gap: 34px;
   align-items: center;
 }
-.navbar-links a {
-  color: #fff9f3; text-decoration: none; transition: color 0.19s;
-  letter-spacing: 1px;
-  padding: 2px 4px 1px 4px;
-  border-radius: 3px;
-  transition: color 0.17s, background 0.17s;
+.navbar-links-desktop a {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.02rem;
+  color: #fff7e6;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 9px;
+  transition: background 0.15s, color 0.16s;
 }
-.navbar-links a.active,
-.navbar-links a:hover {
+.navbar-links-desktop a:hover,
+.navbar-links-desktop a.active {
   color: #eeb88d;
-  background: rgba(238,184,141,0.12);
+  background: #fff6ed12;
 }
 
 .navbar-hamburger {
-  display: flex; flex-direction: column; gap: 5px;
-  cursor: pointer; width: 30px; height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
   margin-left: 16px;
-  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  outline: none;
 }
-.navbar-hamburger span {
+.hamburger-icon,
+.hamburger-icon::before,
+.hamburger-icon::after {
   display: block;
-  height: 4px; width: 100%;
+  width: 32px; height: 3.7px;
   background: #eeb88d;
   border-radius: 3px;
-  transition: 0.2s;
+  position: relative;
+  transition: all 0.23s cubic-bezier(.68,.18,.44,1.12);
 }
-
-.navbar-hamburger.open span {
-  background: #fff;
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 32px; height: 3.7px;
+  background: #eeb88d;
+  border-radius: 3px;
 }
-.hide-on-mobile { display: none; }
+.hamburger-icon::before { top: -10px; }
+.hamburger-icon::after  { top: 10px;  }
 
-@media (min-width: 900px) {
-  .navbar-links .hide-on-mobile { display: inline; }
-  .navbar-hamburger { display: none !important; }
-}
-
-@media (max-width: 899px) {
-  .navbar-links { display: none !important; }
+@media (max-width: 900px) {
+  .navbar-links-desktop { display: none; }
+  .navbar-logo-text { font-size: 1.05rem; }
 }

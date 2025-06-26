@@ -1,61 +1,84 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./MenuOverlay.css";
 
-const socialIcons = [
-  {
-    href: "https://instagram.com",
-    label: "Instagram",
-    icon: (
-      <svg width="26" height="26" fill="none" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="7.5" stroke="#fff" strokeWidth="1.5"/>
-        <circle cx="17.2" cy="6.8" r="1.3" fill="#fff"/>
-      </svg>
-    ),
-  },
-  {
-    href: "https://facebook.com",
-    label: "Facebook",
-    icon: (
-      <svg width="26" height="26" fill="none" viewBox="0 0 24 24">
-        <path d="M17 2.1H15a5 5 0 00-5 5v2H7.2a.7.7 0 00-.7.7V12a.7.7 0 00.7.7H10v7.2c0 .4.3.7.7.7H13a.7.7 0 00.7-.7v-7.2h2.1a.7.7 0 00.7-.7v-2.2a.7.7 0 00-.7-.7H13.7v-1.6a2 2 0 012-2h1.3a.7.7 0 00.7-.7V2.8a.7.7 0 00-.7-.7z" fill="#fff"/>
-      </svg>
-    ),
-  },
-  {
-    href: "https://twitter.com",
-    label: "Twitter",
-    icon: (
-      <svg width="26" height="26" fill="none" viewBox="0 0 24 24">
-        <path d="M22 5.92a8.09 8.09 0 01-2.36.65A4.1 4.1 0 0021.4 4.2a8.2 8.2 0 01-2.6 1A4.1 4.1 0 0012 8.4c0 .32.03.64.09.95A11.64 11.64 0 013 5.1a4.1 4.1 0 001.27 5.47A4.04 4.04 0 012.8 9.8v.05A4.1 4.1 0 004.1 14a4.09 4.09 0 01-1.85.07A4.1 4.1 0 008.1 18a8.24 8.24 0 01-5.09 1.76A8.39 8.39 0 012 19.8a11.59 11.59 0 006.29 1.85c7.54 0 11.67-6.25 11.67-11.67 0-.18-.01-.37-.02-.55A8.34 8.34 0 0022 5.92z" fill="#fff"/>
-      </svg>
-    ),
-  },
+// Left/Right links can be adjusted to match your navigation
+const leftLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About John" },
+  { to: "/listings", label: "Exclusive Listings" },
+  { to: "/sold", label: "Sold Listings" },
+  { to: "/collective", label: "Global Collective™" },
+];
+
+const rightLinks = [
+  { to: "/communities", label: "Communities" },
+  { to: "/search", label: "Home Search" },
+  { to: "/forsale", label: "Homes For Sale" },
+  { to: "/news", label: "News" },
+  { to: "/blog", label: "Blog" },
+  { to: "/alliance", label: "International Luxury Alliance" },
+  { to: "/elite", label: "Elite Global Agents" },
+  { to: "/account", label: "My Account" },
 ];
 
 const MenuOverlay = ({ open, onClose }) => {
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+      return () => (document.body.style.overflow = "");
+    }
+  }, [open]);
+
   const location = useLocation();
-  const activeLink = (to) => (location.pathname === to ? "active" : "");
 
   return (
-    <div className={`menu-overlay${open ? " open" : ""}`}>
-      <button className="close-btn" onClick={onClose} aria-label="Close Menu">&times;</button>
-      <div className="menu-links">
-        <Link to="/" onClick={onClose} className={activeLink("/")}>Home</Link>
-        <Link to="/about" onClick={onClose} className={activeLink("/about")}>About</Link>
-        <Link to="/listings" onClick={onClose} className={activeLink("/listings")}>Listings</Link>
-        <Link to="/press" onClick={onClose} className={activeLink("/press")}>Press</Link>
-        <Link to="/contact" onClick={onClose} className={activeLink("/contact")}>Contact</Link>
+    <div className={`menu-overlay${open ? " open" : ""}`} tabIndex={open ? 0 : -1} aria-hidden={!open}>
+      <button className="menu-overlay-close" onClick={onClose} aria-label="Close Menu">
+        <span>&times;</span>
+      </button>
+      {/* Soft autumnal gold/fade ovals for design luxury */}
+      <div className="menu-overlay-decor decor-top" />
+      <div className="menu-overlay-decor decor-bottom" />
+
+      <div className="menu-overlay-content">
+        <div className="menu-overlay-col menu-overlay-left">
+          {leftLinks.map((link) => (
+            <Link
+              to={link.to}
+              key={link.to}
+              className={`menu-overlay-link${location.pathname === link.to ? " active" : ""}`}
+              onClick={onClose}
+              tabIndex={open ? 0 : -1}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+        <div className="menu-overlay-col menu-overlay-right">
+          {rightLinks.map((link) => (
+            <Link
+              to={link.to}
+              key={link.to}
+              className={`menu-overlay-link${location.pathname === link.to ? " active" : ""}`}
+              onClick={onClose}
+              tabIndex={open ? 0 : -1}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link to="/contact" className="menu-overlay-contact-btn" onClick={onClose} tabIndex={open ? 0 : -1}>
+            Contact
+          </Link>
+        </div>
       </div>
-      <div className="menu-socials">
-        {socialIcons.map((icon, i) => (
-          <a key={i} href={icon.href} target="_blank" rel="noopener noreferrer" title={icon.label}>
-            {icon.icon}
-          </a>
-        ))}
+      <div className="menu-overlay-bg-logo">
+        <img src="/logo192.png" alt="" draggable="false" />
       </div>
     </div>
   );
 };
 
 export default MenuOverlay;
+
+

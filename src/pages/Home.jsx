@@ -1,14 +1,17 @@
 import React from "react";
 import Hero from "../components/Hero";
 import ListingsSlider from "../components/ListingsSlider";
-// (Communities, PressBar, etc. will go below as we build them)
+import Communities from "../components/Communities";
+import PressBar from "../components/PressBar";
 
 const Home = () => (
   <main>
     <Hero />
     <ListingsSlider />
-    {/* Add Communities, PressBar, and Footer here as we build more sections */}
+    <Communities />
+    <PressBar />
   </main>
 );
 
 export default Home;
+
