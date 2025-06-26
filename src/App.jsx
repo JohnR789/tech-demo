@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-// Placeholder pages for now
-const Home = () => <div style={{paddingTop:120}}>Home Page Content</div>;
-const About = () => <div style={{paddingTop:120}}>About Page Content</div>;
-const Listings = () => <div style={{paddingTop:120}}>Listings Page Content</div>;
-const Press = () => <div style={{paddingTop:120}}>Press Page Content</div>;
-const Contact = () => <div style={{paddingTop:120}}>Contact Page Content</div>;
+// Import your real page components!
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Listings from "./pages/Listings";
+import Press from "./pages/Press";
+import Contact from "./pages/Contact";
 
 function App() {
-    useEffect(() => {
+  useEffect(() => {
     AOS.init({ once: true, duration: 900 });
   }, []);
   return (
