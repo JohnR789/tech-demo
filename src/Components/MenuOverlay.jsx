@@ -1,14 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./MenuOverlay.css";
 
-// Left/Right links can be adjusted to match your navigation
+// Autumn preview images for left links (adjust paths to match your images)
 const leftLinks = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About John" },
-  { to: "/listings", label: "Exclusive Listings" },
-  { to: "/sold", label: "Sold Listings" },
-  { to: "/collective", label: "Global Collective™" },
+  {
+    to: "/",
+    label: "Home",
+    preview: "/previews/autumn-home.jpg",
+  },
+  {
+    to: "/about",
+    label: "About John",
+    preview: "/previews/autumn-about.jpg",
+  },
+  {
+    to: "/listings",
+    label: "Exclusive Listings",
+    preview: "/previews/autumn-listings.jpg",
+  },
+  {
+    to: "/sold",
+    label: "Sold Listings",
+    preview: "/previews/autumn-sold.jpg",
+  },
+  {
+    to: "/collective",
+    label: "Global Collective™",
+    preview: "/previews/autumn-collective.jpg",
+  },
 ];
 
 const rightLinks = [
@@ -23,36 +43,63 @@ const rightLinks = [
 ];
 
 const MenuOverlay = ({ open, onClose }) => {
+  const location = useLocation();
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+  const closeBtnRef = useRef(null);
+
+  useEffect(() => {
+    if (open && closeBtnRef.current) closeBtnRef.current.focus();
+  }, [open]);
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
-      return () => (document.body.style.overflow = "");
+      return () => { document.body.style.overflow = ""; };
     }
   }, [open]);
 
-  const location = useLocation();
-
   return (
-    <div className={`menu-overlay${open ? " open" : ""}`} tabIndex={open ? 0 : -1} aria-hidden={!open}>
-      <button className="menu-overlay-close" onClick={onClose} aria-label="Close Menu">
+    <div
+      className={`menu-overlay${open ? " open" : ""}`}
+      tabIndex={open ? 0 : -1}
+      aria-hidden={!open}
+      aria-modal="true"
+      role="dialog"
+    >
+      <button
+        ref={closeBtnRef}
+        className="menu-overlay-close"
+        onClick={onClose}
+        aria-label="Close Menu"
+        tabIndex={open ? 0 : -1}
+      >
         <span>&times;</span>
       </button>
-      {/* Soft autumnal gold/fade ovals for design luxury */}
       <div className="menu-overlay-decor decor-top" />
       <div className="menu-overlay-decor decor-bottom" />
 
       <div className="menu-overlay-content">
         <div className="menu-overlay-col menu-overlay-left">
-          {leftLinks.map((link) => (
-            <Link
-              to={link.to}
+          {leftLinks.map((link, idx) => (
+            <div
               key={link.to}
-              className={`menu-overlay-link${location.pathname === link.to ? " active" : ""}`}
-              onClick={onClose}
-              tabIndex={open ? 0 : -1}
+              className="menu-overlay-link-row"
+              onMouseEnter={() => setHoveredIdx(idx)}
+              onMouseLeave={() => setHoveredIdx(null)}
             >
-              {link.label}
-            </Link>
+              <Link
+                to={link.to}
+                className={`menu-overlay-link${location.pathname === link.to ? " active" : ""}${hoveredIdx === idx ? " hovered" : ""}`}
+                onClick={onClose}
+                tabIndex={open ? 0 : -1}
+              >
+                {link.label}
+              </Link>
+              {link.preview && hoveredIdx === idx && (
+                <div className="menu-overlay-preview-image">
+                  <img src={link.preview} alt="" draggable="false" />
+                </div>
+              )}
+            </div>
           ))}
         </div>
         <div className="menu-overlay-col menu-overlay-right">
@@ -67,11 +114,34 @@ const MenuOverlay = ({ open, onClose }) => {
               {link.label}
             </Link>
           ))}
-          <Link to="/contact" className="menu-overlay-contact-btn" onClick={onClose} tabIndex={open ? 0 : -1}>
-            Contact
-          </Link>
         </div>
       </div>
+
+{/* Centered Contact button as a maple leaf SVG button */}
+<div className="menu-overlay-contact-btn-row">
+  <Link
+    to="/contact"
+    className="menu-overlay-contact-leaf-btn"
+    onClick={onClose}
+    tabIndex={open ? 0 : -1}
+    aria-label="Contact"
+  >
+    <span className="contact-leaf-label">Contact</span>
+    <svg className="contact-btn-leaf" viewBox="0 0 100 100" width="112" height="112" aria-hidden="true">
+      {/* Gold base (always visible) */}
+      <path
+        className="contact-btn-leaf-path-base"
+        d="M50 6 L62 36 L96 26 L70 52 L90 58 L60 64 L78 82 L54 70 L50 98 L46 70 L22 82 L40 64 L10 58 L30 52 L4 26 L38 36 Z"
+      />
+      {/* White animated trace */}
+      <path
+        className="contact-btn-leaf-path-animate"
+        d="M50 6 L62 36 L96 26 L70 52 L90 58 L60 64 L78 82 L54 70 L50 98 L46 70 L22 82 L40 64 L10 58 L30 52 L4 26 L38 36 Z"
+      />
+    </svg>
+  </Link>
+</div>
+
       <div className="menu-overlay-bg-logo">
         <img src="/logo192.png" alt="" draggable="false" />
       </div>
@@ -80,5 +150,6 @@ const MenuOverlay = ({ open, onClose }) => {
 };
 
 export default MenuOverlay;
+
 
 
