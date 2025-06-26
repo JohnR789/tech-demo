@@ -1,4 +1,8 @@
 import React from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
@@ -10,6 +14,9 @@ const Press = () => <div style={{paddingTop:120}}>Press Page Content</div>;
 const Contact = () => <div style={{paddingTop:120}}>Contact Page Content</div>;
 
 function App() {
+    useEffect(() => {
+    AOS.init({ once: true, duration: 900 });
+  }, []);
   return (
     <Router>
       <Navbar />
