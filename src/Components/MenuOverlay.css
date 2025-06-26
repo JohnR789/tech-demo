@@ -2,12 +2,16 @@
   position: fixed;
   z-index: 1100;
   left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(36,24,8,0.94);
+  background: linear-gradient(110deg, #492a0e 50%, #b97c38 120%);
   color: #fff;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   opacity: 0; pointer-events: none;
-  transition: opacity 0.4s;
+  transition: opacity 0.42s;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  
+
 }
 .menu-overlay.open {
   opacity: 1;
@@ -37,11 +41,15 @@
   font-weight: 700;
   letter-spacing: 2px;
   text-decoration: none;
-  transition: color 0.22s, text-shadow 0.22s;
+  transition: color 0.22s, text-shadow 0.22s, background 0.2s;
   text-shadow: 0 2px 24px #6b3c09cc;
+  padding: 7px 22px;
+  border-radius: 7px;
 }
+.menu-links a.active,
 .menu-links a:hover {
   color: #eeb88d;
+  background: rgba(238,184,141,0.13);
   text-shadow: 0 6px 36px #eeb88d99;
 }
 
@@ -49,7 +57,12 @@
   display: flex; gap: 38px;
   margin-top: 40px;
 }
-.menu-socials a { opacity: 0.88; }
+.menu-socials a {
+  opacity: 0.88;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.15s;
+}
 .menu-socials a:hover { opacity: 1; color: #eeb88d; }
 
 @media (max-width: 600px) {

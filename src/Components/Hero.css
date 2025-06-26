@@ -70,9 +70,46 @@
   box-shadow: 0 6px 36px #d4873c6a;
 }
 
+/* Chevron scroll cue */
+.chevron-down {
+  position: absolute;
+  left: 50%; bottom: 48px;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  z-index: 5;
+  cursor: pointer;
+  padding: 0;
+  animation: chevron-float 2.1s ease-in-out infinite;
+  outline: none;
+}
+.chevron-icon {
+  display: block;
+  width: 44px; height: 44px;
+  border-left: 4px solid #ffe5be;
+  border-bottom: 4px solid #ffe5be;
+  transform: rotate(-45deg);
+  margin: 0 auto;
+  opacity: 0.92;
+  box-shadow: 0 2px 14px #502d0a32;
+}
+
+@keyframes chevron-float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 1;}
+  60% { transform: translateY(14px) scale(1.07); opacity: 0.7;}
+}
+
+.chevron-down:focus .chevron-icon,
+.chevron-down:hover .chevron-icon {
+  border-color: #eeb88d;
+  opacity: 1;
+  box-shadow: 0 6px 30px #eeb88d7c;
+}
+
 @media (max-width: 600px) {
   .hero-content h1 { font-size: 2.0rem; }
   .hero-content p { font-size: 1rem; }
   .hero { min-height: 340px; height: 72vw; }
   .hero-btn { font-size: 1.02rem; padding: 13px 22px; }
+  .chevron-icon { width: 32px; height: 32px; }
 }

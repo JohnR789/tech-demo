@@ -4,44 +4,69 @@
   z-index: 1001;
   display: flex; justify-content: space-between; align-items: center;
   padding: 24px 7vw 12px 7vw;
-  background: rgba(36, 24, 8, 0.92);
+  background: rgba(36, 24, 8, 0.44);
   color: #fff;
-  transition: background 0.4s;
+  transition: background 0.44s, box-shadow 0.28s;
   box-shadow: 0 1px 12px rgba(80,50,22,0.03);
+  -webkit-backdrop-filter: blur(4px);
+   backdrop-filter: blur(4px);
+  
 }
-.navbar-transparent {
-  background: transparent;
+.navbar.solid {
+  background: rgba(36, 24, 8, 0.92);
+  box-shadow: 0 4px 28px #633a1e29;
+}
+.navbar.transparent {
+  background: rgba(36, 24, 8, 0.27);
   box-shadow: none;
 }
-
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
 .navbar-logo img {
   width: 42px;
   vertical-align: middle;
   margin-right: 10px;
   border-radius: 10px;
+  box-shadow: 0 2px 12px #ffb10044;
+}
+.navbar-logo .brand {
+  font-weight: 700;
+  font-size: 1.48rem;
+  color: #ffe5be;
+  font-family: 'Inter', Arial, sans-serif;
+  letter-spacing: 1.6px;
 }
 .navbar-logo a {
-  font-weight: 700; font-size: 1.5rem; color: #fff; text-decoration: none;
+  text-decoration: none;
   display: flex; align-items: center;
   gap: 8px;
 }
 
 .navbar-links {
-  display: flex; gap: 40px;
+  display: flex; gap: 44px;
   font-size: 1.12rem; font-weight: 500;
   align-items: center;
 }
 .navbar-links a {
   color: #fff9f3; text-decoration: none; transition: color 0.19s;
   letter-spacing: 1px;
+  padding: 2px 4px 1px 4px;
+  border-radius: 3px;
+  transition: color 0.17s, background 0.17s;
 }
+.navbar-links a.active,
 .navbar-links a:hover {
   color: #eeb88d;
+  background: rgba(238,184,141,0.12);
 }
 
 .navbar-hamburger {
   display: flex; flex-direction: column; gap: 5px;
-  cursor: pointer; width: 30px;
+  cursor: pointer; width: 30px; height: 32px;
+  margin-left: 16px;
+  z-index: 10;
 }
 .navbar-hamburger span {
   display: block;
@@ -51,9 +76,16 @@
   transition: 0.2s;
 }
 
+.navbar-hamburger.open span {
+  background: #fff;
+}
 .hide-on-mobile { display: none; }
 
 @media (min-width: 900px) {
   .navbar-links .hide-on-mobile { display: inline; }
   .navbar-hamburger { display: none !important; }
+}
+
+@media (max-width: 899px) {
+  .navbar-links { display: none !important; }
 }
