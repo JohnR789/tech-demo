@@ -1,63 +1,43 @@
 import React from "react";
 import "./PressBar.css";
 
-const press = [
-  {
-    name: "Forbes",
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6e/Forbes_logo.svg",
-    url: "https://www.forbes.com/",
-  },
-  {
-    name: "The Wall Street Journal",
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/The_Wall_Street_Journal_Logo.svg",
-    url: "https://www.wsj.com/",
-  },
-  {
-    name: "New York Times",
-    img: "https://upload.wikimedia.org/wikipedia/commons/4/40/New_York_Times_logo_variation.jpg",
-    url: "https://www.nytimes.com/",
-  },
-  {
-    name: "Los Angeles Times",
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/64/Los_Angeles_Times_logo.svg",
-    url: "https://www.latimes.com/",
-  },
-  {
-    name: "Robb Report",
-    img: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Robb_Report_logo.svg",
-    url: "https://robbreport.com/",
-  },
-  {
-    name: "Mansion Global",
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/f8/Mansion_Global_Logo.png",
-    url: "https://www.mansionglobal.com/",
-  },
-  {
-    name: "Variety",
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Variety_logo.svg",
-    url: "https://variety.com/",
-  },
+
+const pressLogos = [
+  { src: "/press-logo1.png", alt: "WSJ" },
+  { src: "/press-logo2.png", alt: "Forbes" },
+  { src: "/press-logo3.png", alt: "HGTV" },
+  { src: "/press-logo4.png", alt: "Boston Globe" },
+  { src: "/press-logo5.png", alt: "NY Times" },
+  { src: "/press-logo6.png", alt: "Robb Report" },
 ];
 
 const PressBar = () => (
-  <section className="press-bar">
-    <div className="press-bar-logos">
-      {press.map((item, i) => (
-        <a
-          href={item.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          key={i}
-          className="press-logo-link"
-          title={item.name}
-          aria-label={item.name}
-        >
-          <img src={item.img} alt={item.name} className="press-logo-img" />
-        </a>
-      ))}
+  <div className="pressbar-outer">
+    <div className="pressbar-inner">
+      <div className="pressbar-label">As seen on…</div>
+      <div className="pressbar-carousel-viewport">
+        <div className="pressbar-carousel-track">
+          {pressLogos.map((logo, i) => (
+            <React.Fragment key={logo.alt}>
+              <div className="pressbar-logo-wrap">
+                <img src={logo.src} alt={logo.alt} className="pressbar-logo" />
+              </div>
+              {i !== pressLogos.length - 1 && <div className="pressbar-divider" />}
+            </React.Fragment>
+          ))}
+          {/* Clone logos for seamless looping */}
+          {pressLogos.map((logo, i) => (
+            <React.Fragment key={logo.alt + "-clone"}>
+              <div className="pressbar-logo-wrap">
+                <img src={logo.src} alt={logo.alt} className="pressbar-logo" />
+              </div>
+              {i !== pressLogos.length - 1 && <div className="pressbar-divider" />}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 );
 
 export default PressBar;
-

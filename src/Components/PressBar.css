@@ -1,63 +1,114 @@
-.press-bar {
-  background: #fffdf7;
-  text-align: center;
-  padding: 48px 0 48px 0;
+.pressbar-outer {
+  width: 100vw;
+  background: linear-gradient(90deg, #fff6ed 80%, #eeb88d22 100%);
+  overflow: hidden;
+  border-top: 1.7px solid #eeb88d22;
+  border-bottom: 1.7px solid #eeb88d22;
+  padding: 0;
   position: relative;
-  border-top: 1.5px solid #f3e5cf;
-  border-bottom: 1.5px solid #f3e5cf;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  z-index: 3;
 }
 
-.press-bar-logos {
+.pressbar-inner {
   display: flex;
-  gap: 52px;
+  align-items: center;
+  width: 100vw;
+  height: 82px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pressbar-label {
+  font-size: 1.11rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: #ae6d2f;
+  margin-right: 24px;
+  margin-left: 18px;
+  white-space: nowrap;
+  letter-spacing: 0.7px;
+  opacity: 0.85;
+  -webkit-user-select: none;
+  user-select: none;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.pressbar-carousel-viewport {
+  flex: 1 1 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pressbar-carousel-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-width: 200%; /* Must be 2x the viewport for seamless scroll */
+  animation: pressbar-scroll 30s linear infinite;
+}
+
+@keyframes pressbar-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* EDGE-TO-EDGE: Use flex-basis to fill the available space */
+.pressbar-logo-wrap {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  height: 90px;       /* Was 68px */
+  padding: 0;
+  min-width: 0;
 }
 
-.press-logo-link {
-  display: flex;
-  align-items: center;
-  filter: grayscale(1) brightness(0.7) contrast(1.08);
-  opacity: 0.78;
-  transition: 
-    filter 0.23s cubic-bezier(.69,.2,.3,1.08), 
-    opacity 0.2s cubic-bezier(.65,.18,.55,1.15), 
-    transform 0.17s cubic-bezier(.68,.18,.44,1.12),
-    box-shadow 0.18s;
-  height: 48px;
-  max-height: 50px;
-  padding: 0 6px;
-}
-
-.press-logo-link:hover,
-.press-logo-link:focus {
-  filter: grayscale(0) brightness(1.1) drop-shadow(0 2px 12px #eeb88d55);
-  opacity: 1;
-  transform: scale(1.06) translateY(-3px);
-  z-index: 2;
-}
-
-.press-logo-img {
-  max-height: 36px;
-  max-width: 130px;
-  width: auto;
-  height: auto;
-  display: block;
-  background: none;
-  pointer-events: none;
+.pressbar-logo {
+  width: 88%;         /* Was 80% */
+  height: 75px;       /* Was 52px */
+  max-width: 230px;   /* Was 170px */
+  max-height: 75px;   /* Was 52px */
   object-fit: contain;
+  background: #fff;
+  border-radius: 9px;
+  box-shadow: 0 2px 11px #eeb88d19;
+  padding: 12px 14px;  /* Increased for more white space */
+  margin: 0 auto;
+  display: block;
+  transition: filter 0.2s;
+  filter: grayscale(30%) brightness(0.93);
 }
 
+.pressbar-logo:hover {
+  filter: grayscale(0%) brightness(1.07) drop-shadow(0 1px 8px #eeb88d59);
+}
+
+.pressbar-divider {
+  width: 11px;
+  height: 36px;
+  background: linear-gradient(180deg, #eeb88d 0, #fff6ed 100%);
+  opacity: 0.38;
+  margin: 0;
+  border-radius: 6px;
+  align-self: center;
+}
+
+/* Responsive: shrink logo, label spacing, and bar */
 @media (max-width: 900px) {
-  .press-bar-logos { gap: 28px; }
-  .press-logo-img { max-height: 27px; max-width: 76px; }
-  .press-bar { padding: 24px 0; margin: 20px 0; }
+  .pressbar-label { margin-right: 9px; margin-left: 8px; font-size: 0.95rem;}
+  .pressbar-logo-wrap { height: 47px; }
+  .pressbar-logo { max-width: 110px; height: 32px; }
+  .pressbar-divider { height: 23px; }
+  .pressbar-inner { height: 54px;}
 }
-@media (max-width: 600px) {
-  .press-bar { padding: 16px 0; margin: 12px 0; }
-  .press-bar-logos { gap: 12px; }
-  .press-logo-img { max-height: 18px; max-width: 44px; }
+@media (max-width: 650px) {
+  .pressbar-inner { height: 40px; }
+  .pressbar-label { font-size: 0.89rem;}
+  .pressbar-logo { max-width: 70px; height: 18px;}
+  .pressbar-logo-wrap { height: 23px;}
 }
+
+
