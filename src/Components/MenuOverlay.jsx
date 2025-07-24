@@ -1,51 +1,52 @@
 import React, { useState } from "react";
 import "./MenuOverlay.css";
 
+
 // LEFT: main links with luxury flying image previews
 const menuLinks = [
   {
     label: "Home",
     href: "/",
     images: [
-      "https://media-production.lp-cdn.com/media/mhomjx8sk56tgiohoola",
-      "https://media-production.lp-cdn.com/media/ueqpp84sl3psx5pbwlxe",
-      "https://media-production.lp-cdn.com/media/oyrkxpcb3toaiaje8stf",
+    "/community4.png",
+    "/community5.png",
+    "/community6.png",
     ],
   },
   {
     label: "Exclusive Listings",
     href: "/properties/sale",
     images: [
-      "https://media-production.lp-cdn.com/media/qfy3amq52rci41feo5ug",
-      "https://media-production.lp-cdn.com/media/tqvqg5zbpuupttcsiepu",
-      "https://media-production.lp-cdn.com/media/ikb1lolrn7iclyfi0jrc",
+      "/house1.png",
+      "/house2.png",
+      "/house3.png",
     ],
   },
   {
-    label: "About Jade",
-    href: "/about",
+    label: "Exclusive Listings",
+    href: "/properties/sale",
     images: [
-      "https://media-production.lp-cdn.com/media/bqe9mwaimbqs9h2jlaoy",
-      "https://media-production.lp-cdn.com/media/bohzwhppoebtdb2igilb",
-      "https://media-production.lp-cdn.com/media/afdjq4dnpbljwzte7c30",
+      "/house4.png",
+      "/house5.png",
+      "/house6.png",
     ],
   },
   {
     label: "Sold Listings",
     href: "/properties/sold",
     images: [
-      "https://media-production.lp-cdn.com/media/nhemppbh8jkwjkuchvaa",
-      "https://media-production.lp-cdn.com/media/msa1gsf7qzezyjyfsq4j",
-      "https://media-production.lp-cdn.com/media/jb255jgutdkwhnohct6y",
+      "/house7.png",
+      "/house8.png",
+      "/house9.png",
     ],
   },
   {
-    label: "Global Collective™",
-    href: "/properties/worldwide",
+    label: "Autumn Collective",
+    href: "/properties/autumn-collective",
     images: [
-      "https://media-production.lp-cdn.com/media/st9kno1zmcs8aha4ao5j",
-      "https://media-production.lp-cdn.com/media/cpksxmyzjfneffi9gxv4",
-      "https://media-production.lp-cdn.com/media/khqked0ukm6qhohskubr",
+      "/community1.png",
+      "/community2.png",
+      "/community3.png",
     ],
   },
 ];
