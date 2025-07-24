@@ -1,18 +1,55 @@
 .navbar {
-  width: 100%;
+  width: 100vw;
   position: fixed;
   top: 0; left: 0;
-  z-index: 999;
+  z-index: 9999;
   background: linear-gradient(90deg, #432c12cc 10%, #2d1405bb 90%);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
-  transition: background 0.37s;
   min-height: 66px;
-  box-shadow: 0 3px 24px #432c1244;
+  box-shadow: 0 4px 32px #ad5b0022;
+  transition:
+    background 0.37s,
+    transform 0.33s cubic-bezier(.68,.15,.15,.97),
+    opacity 0.23s;
+  will-change: transform, opacity;
+  transform: translateY(0%);
+  opacity: 1;
+  pointer-events: auto;
 }
-.navbar.hide { opacity: 0; pointer-events: none; }
+
+.navbar.hide-up {
+  transform: translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar.show {
+  transform: translateY(0%);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* When overlay menu is open, fade out navbar visually (but keep DOM for accessibility) */
+.navbar.overlay-open {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Scroll progress bar at the very top */
+.navbar-progress-bar {
+  position: absolute;
+  left: 0; top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #eeb88d 0, #e89c64 100%);
+  border-radius: 2px;
+  transition: width 0.16s;
+  z-index: 10001;
+  width: 0;
+  pointer-events: none;
+}
 
 .navbar-container {
   width: 97vw;
@@ -21,61 +58,70 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 10px 0;
 }
+
 .navbar-logo-link {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 14px;
   text-decoration: none;
 }
+
 .navbar-logo-img {
-  height: 37px;
-  width: 37px;
+  height: 41px;
+  width: 41px;
   border-radius: 50%;
   box-shadow: 0 2px 14px #eeb88d45;
   background: #fff6ed;
 }
+
 .navbar-logo-text {
   font-family: 'Playfair Display', serif;
-  font-size: 1.29rem;
+  font-size: 1.32rem;
   color: #eeb88d;
   letter-spacing: 1.3px;
   font-weight: 800;
   text-shadow: 0 2px 8px #fff8e523;
 }
+
 .navbar-links-desktop {
   display: flex;
-  gap: 34px;
+  gap: 36px;
   align-items: center;
 }
 .navbar-links-desktop a {
   font-family: 'Inter', sans-serif;
-  font-size: 1.02rem;
+  font-size: 1.08rem;
   color: #fff7e6;
   text-decoration: none;
   font-weight: 500;
-  padding: 7px 13px;
-  border-radius: 9px;
-  transition: background 0.15s, color 0.16s;
+  padding: 9px 17px;
+  border-radius: 12px;
+  transition: background 0.15s, color 0.16s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px #ad5b0012;
+  outline: none;
 }
 .navbar-links-desktop a:hover,
-.navbar-links-desktop a.active {
+.navbar-links-desktop a.active,
+.navbar-links-desktop a:focus {
   color: #eeb88d;
   background: #fff6ed12;
+  box-shadow: 0 4px 22px #eeb88d22;
 }
 
 .navbar-hamburger {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 12px;
-  margin-left: 16px;
+  padding: 13px;
+  margin-left: 18px;
   display: flex;
   flex-direction: column;
   gap: 7px;
   outline: none;
 }
+
 .hamburger-icon,
 .hamburger-icon::before,
 .hamburger-icon::after {
@@ -101,4 +147,10 @@
 @media (max-width: 900px) {
   .navbar-links-desktop { display: none; }
   .navbar-logo-text { font-size: 1.05rem; }
+}
+
+@media (max-width: 600px) {
+  .navbar-container { padding: 8px 0; }
+  .navbar-logo-img { height: 33px; width: 33px; }
+  .navbar-logo-text { font-size: 0.9rem; }
 }
