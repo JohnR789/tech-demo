@@ -38,7 +38,7 @@
 .communities-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 240px);
+  /* grid-template-rows removed for square images */
   gap: 40px 32px;
   max-width: 1300px;
   margin: 0 10px;
@@ -48,8 +48,22 @@
 .communities-grid.fade-in { opacity: 1; }
 .communities-grid.fade-out { opacity: 0.04; pointer-events: none; }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(38px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.community-card.fade-up {
+  animation: fadeUp 0.55s cubic-bezier(.53,.02,.32,1.05) both;
+}
+
 .community-card {
-  border-radius: 19px;
+  border-radius: 0;
   overflow: hidden;
   background: #fff;
   box-shadow: 0 7px 30px #ad5b0019;
@@ -65,15 +79,17 @@
   border: 2px solid #eeb88d;
   z-index: 2;
 }
-
 .community-image {
-  flex: 1 1 0;
-  min-height: 120px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   background-size: cover;
   background-position: center;
   border-bottom: 1.5px solid #eeb88d77;
+  min-height: unset;
+  height: auto;
+  display: block;
+  border-radius: 0;
 }
-
 .community-info {
   padding: 21px 16px 14px 16px;
   background: linear-gradient(180deg, #fff6edcc 60%, #fffaf544 100%);
@@ -147,16 +163,13 @@
 @media (max-width: 1100px) {
   .communities-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 210px);
   }
 }
 @media (max-width: 700px) {
   .communities-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(8, 180px);
     gap: 18px;
     margin: 0 3vw;
   }
   .communities-controls { gap: 8px; }
 }
-
