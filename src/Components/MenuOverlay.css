@@ -45,17 +45,16 @@
 }
 
 .menu-overlay-col.menu-overlay-left {
-  flex: 0 1 46vw;
-  min-width: 300px;
-  max-width: 500px;
+  flex: 0 1 32vw;     
+  min-width: 180px;       
+  max-width: 260px;       
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2.7vh;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
+  gap: 1.5vh;            
+  padding-top: 4vh;
+  padding-bottom: 4vh;
 }
-
 .menu-overlay-col.menu-overlay-right {
   flex: 0 0 260px;
   min-width: 200px;
@@ -71,13 +70,13 @@
 
 .menu-overlay-link-row {
   position: relative;
-  min-height: 4vw;
-  margin-bottom: 1.2vw;
+  min-height: 2.6vw;
+  margin-bottom: 0.4vw;
   z-index: 4;
 }
 .menu-overlay-link {
   font-family: 'Italiana', serif;
-  font-size: clamp(2.4rem, 5vw, 5.3rem);
+  font-size: clamp(1.4rem, 2.7vw, 3.1rem);
   color: #e4dfd8;
   font-weight: 400;
   letter-spacing: 0.9px;
@@ -275,7 +274,7 @@
   }
   .menu-overlay-col { align-items: center !important; }
   .menu-overlay-link { font-size: 1.09rem; text-align: center;}
-  .menu-overlay-link-row { min-height: 50px; margin-bottom: 1vw;}
+   .menu-overlay-link-row {min-height: 50px; margin-bottom: 1vw;}
   .preview-image { width: 46px; height: 46px;}
   .menu-overlay-contact-leaf-btn { width: 44px; height: 44px;}
   .contact-leaf-label { font-size: 0.6rem; }
