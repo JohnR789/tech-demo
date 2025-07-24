@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Listings from "./pages/Listings";
 import Contact from "./pages/Contact";
+import CommunitiesPage from "./pages/Communities"; // <-- Add this import
 // Add Sold, Blog, etc. if needed
 import Footer from "./components/Footer";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/listings" element={<Listings />} />
+        <Route path="/communities" element={<CommunitiesPage />} /> {/* <-- Add this route */}
         <Route path="/contact" element={<Contact />} />
         {/* Add other routes here */}
       </Routes>
@@ -30,3 +32,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,0 +1,86 @@
+/* --- PAGE WRAPPER --- */
+.autumn-communities-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #fff6ed 0%, #fbe4c1 60%, #eeb88d 100%);
+  font-family: 'Inter', sans-serif;
+  padding-top: 84px; /* offset for fixed navbar/header */
+  position: relative;
+  z-index: 0;
+}
+
+/* --- INTRO --- */
+.autumn-communities-intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto 32px auto;
+  max-width: 750px;
+}
+
+.autumn-intro-detail {
+  font-size: 1.18rem;
+  color: #79573b;
+  line-height: 1.55;
+  background: #fff6edee;
+  border-radius: 19px;
+  padding: 18px 18px 16px 18px;
+  box-shadow: 0 6px 32px #ad5b0021;
+  border: 1.7px solid #eeb88d44;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .autumn-intro-detail {
+    font-size: 1.01rem;
+    padding: 11px 5vw 10px 5vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .autumn-communities-page {
+    padding-top: 66px;
+  }
+  .autumn-communities-intro {
+    margin-bottom: 18px;
+    max-width: 99vw;
+  }
+  .autumn-intro-detail {
+    font-size: 0.98rem;
+    padding: 8px 3vw 8px 3vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .autumn-intro-detail {
+    font-size: 0.92rem;
+    padding: 7px 2vw 7px 2vw;
+  }
+}
+
+/* --- COMMUNITIES GRID (let Communities.jsx or .css handle card specifics) --- */
+.communities-section {
+  padding-bottom: 60px;
+}
+
+/* --- FOOTER --- */
+.autumn-footer {
+  text-align: center;
+  font-size: 1.07rem;
+  color: #ad5b00;
+  padding: 27px 0 19px 0;
+  background: linear-gradient(90deg, #fff6ed 60%, #eeb88d22 100%);
+  border-top: 2px solid #eeb88d35;
+  margin-top: 44px;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.8px;
+  opacity: 0.94;
+  box-shadow: 0 -2px 30px #eeb88d19;
+}
+
+/* --- EXTRAS --- */
+.autumn-footer {
+  -webkit-user-select: none;
+  user-select: none;
+}
