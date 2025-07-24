@@ -2,9 +2,12 @@ html, body {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   background: #fffdf8;
   color: #232323;
+  width: 100vw;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+
 }
 * {
   box-sizing: border-box;
