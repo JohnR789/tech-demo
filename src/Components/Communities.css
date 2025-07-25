@@ -38,7 +38,6 @@
 .communities-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* grid-template-rows removed for square images */
   gap: 40px 32px;
   max-width: 1300px;
   margin: 0 10px;

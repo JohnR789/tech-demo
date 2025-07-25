@@ -16,11 +16,10 @@ const Navbar = () => {
     let ticking = false;
     const handleScroll = () => {
       const current = window.scrollY;
-      // Only hide nav after scrolling 90px (change if you want)
       if (current > lastScroll.current && current > 90 && !menuOpen) {
-        setVisible(false); // Hide when scrolling down
+        setVisible(false); 
       } else {
-        setVisible(true); // Show when scrolling up
+        setVisible(true); 
       }
       lastScroll.current = current;
 

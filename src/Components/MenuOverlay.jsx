@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./MenuOverlay.css";
 
 
-// LEFT: main links with luxury flying image previews
+// LEFT: main links with flying image previews
 const menuLinks = [
   {
     label: "Home",
@@ -51,7 +51,7 @@ const menuLinks = [
   },
 ];
 
-// RIGHT: Jade-style secondary menu
+// RIGHT: secondary menu
 const rightMenuLinks = [
   { label: "Communities", href: "/communities" },
   { label: "Home Search", href: "/search" },
@@ -99,7 +99,7 @@ const MenuOverlay = ({ open, onClose }) => {
               >
                 {link.label}
               </a>
-              {/* Ultra flying preview images */}
+              {/* Flying preview images */}
               {showPreviews && hoveredIndex === idx && (
                 <div className="menu-overlay-previews-ultra">
                   <div className="preview-image ultra-preview-1">
