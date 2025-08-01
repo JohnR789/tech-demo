@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./MenuOverlay.css";
 
-// You can adjust these images/labels as needed
 const menuLinks = [
   {
     label: "Home",
@@ -24,82 +23,38 @@ const menuLinks = [
     images: ["/community1.png", "/community2.png", "/community3.png"],
   },
 ];
-
-// Custom fly-in destinations (per link, per image) [left, top] offsets from link
-const PREVIEW_LAYOUTS = [
-  // HOME
-  [
-    { left: 430, top: -130 },   // flies up & far right
-    { left: 800, top: 100 },    // flies right and down
-    { left: 300, top: 300 },    // flies way down/right
-  ],
-  // ABOUT AUTUMN REALTY
-  [
-    { left: 570, top: -220 },
-    { left: 950, top: 40 },
-    { left: 420, top: 400 },
-  ],
-  // EXCLUSIVE LISTINGS
-  [
-    { left: 950, top: -140 },
-    { left: 1240, top: 110 },
-    { left: 520, top: 300 },
-  ],
-  // AUTUMN COLLECTIVE
-  [
-    { left: 700, top: -210 },
-    { left: 1100, top: 300 },
-    { left: 330, top: 490 },
-  ]
+const PREVIEW_END_POSITIONS = [
+  { left: '4vw', top: '40vh' },
+  { left: 'calc(50vw - 150px)', top: '8vh' },
+  { left: 'calc(96vw - 300px)', top: '50vh' },
 ];
 
-
-const PREVIEW_WIDTH = 200;
-const PREVIEW_HEIGHT = 120;
+const PREVIEW_WIDTH = 300;
+const PREVIEW_HEIGHT = 300;
 
 const MenuOverlay = ({ open, onClose }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [linkRect, setLinkRect] = useState(null);
-
-  // Contact animation
+  const menuRowRefs = useRef([]);
   const [contactTraceState, setContactTraceState] = useState("");
+
   const handleContactMouseEnter = () => setContactTraceState("tracing");
   const handleContactFocus = () => setContactTraceState("tracing");
   const handleContactMouseLeave = () => setContactTraceState("untracing");
   const handleContactBlur = () => setContactTraceState("untracing");
 
-  const menuRowRefs = useRef([]);
+  const handleMenuRowEnter = (idx) => setHoveredIndex(idx);
+  const handleMenuRowLeave = () => setHoveredIndex(null);
 
-  // On hover, get bounding rect of hovered link (relative to viewport)
-  const handleMenuRowEnter = (idx) => {
-    setHoveredIndex(idx);
-    if (menuRowRefs.current[idx]) {
-      const rect = menuRowRefs.current[idx].getBoundingClientRect();
-      setLinkRect(rect);
-    }
-  };
-  const handleMenuRowLeave = () => {
-    setHoveredIndex(null);
-    setLinkRect(null);
-  };
+  const showPreviews = open && hoveredIndex !== null;
 
-  const showPreviews = open && hoveredIndex !== null && linkRect;
-
-  // Clamp images to viewport
   const getPreviewPosition = (n) => {
-    if (!linkRect || hoveredIndex == null) return {};
-    const layout = PREVIEW_LAYOUTS[hoveredIndex][n];
-    let top = linkRect.top + layout.top;
-    let left = linkRect.left + layout.left;
-
-    // Clamp so they never go off the window
-    if (top < 8) top = 8;
-    if (top + PREVIEW_HEIGHT > window.innerHeight - 8)
-      top = window.innerHeight - PREVIEW_HEIGHT - 8;
-    if (left + PREVIEW_WIDTH > window.innerWidth - 8)
-      left = window.innerWidth - PREVIEW_WIDTH - 8;
-
-    return { top, left };
+    const pos = PREVIEW_END_POSITIONS[n];
+    return {
+      left: pos.left,
+      top: pos.top,
+      width: PREVIEW_WIDTH,
+      height: PREVIEW_HEIGHT,
+    };
   };
 
   return (
@@ -113,7 +68,6 @@ const MenuOverlay = ({ open, onClose }) => {
         &times;
       </button>
       <div className="menu-overlay-content">
-        {/* Left: Main links */}
         <div className="menu-overlay-col menu-overlay-left">
           {menuLinks.map((link, idx) => (
             <div
@@ -132,24 +86,31 @@ const MenuOverlay = ({ open, onClose }) => {
               >
                 {link.label}
               </a>
-              {/* Jade Mills style: unique fly-in previews for each link */}
               {showPreviews && hoveredIndex === idx && (
                 <>
-                  {[0, 1, 2].map((n) => (
-                    <div
-                      key={n}
-                      className={`preview-image ultra-preview-${n + 1}`}
-                      style={getPreviewPosition(n)}
-                    >
-                      <img src={link.images[n]} alt="" />
-                    </div>
-                  ))}
+                  <div
+                    className="preview-image ultra-from-left quadrant-left"
+                    style={getPreviewPosition(0)}
+                  >
+                    <img src={link.images[0]} alt="" />
+                  </div>
+                  <div
+                    className="preview-image ultra-from-top quadrant-top"
+                    style={getPreviewPosition(1)}
+                  >
+                    <img src={link.images[1]} alt="" />
+                  </div>
+                  <div
+                    className="preview-image ultra-from-right quadrant-right"
+                    style={getPreviewPosition(2)}
+                  >
+                    <img src={link.images[2]} alt="" />
+                  </div>
                 </>
               )}
             </div>
           ))}
         </div>
-        {/* Contact Button */}
         <div className="menu-overlay-contact-btn-right">
           <a
             href="/contact"

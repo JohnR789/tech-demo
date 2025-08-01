@@ -93,7 +93,7 @@ const Communities = () => {
   const [paused, setPaused] = useState(false);
   const autoAdvance = useRef();
 
-  // Auto-cycle every 30s (paused if user is hovering/focused)
+  // Auto-cycle every 30s 
   useEffect(() => {
     if (paused) return;
     autoAdvance.current = setInterval(() => {

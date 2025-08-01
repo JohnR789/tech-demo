@@ -3,15 +3,17 @@
   position: fixed;
   top: 0; left: 0;
   z-index: 9999;
-  background: linear-gradient(90deg, #432c12cc 10%, #2d1405bb 90%);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   display: flex;
   align-items: center;
   min-height: 66px;
-  box-shadow: 0 4px 32px #ad5b0022;
+  box-shadow: none;
   transition:
     background 0.37s,
+    box-shadow 0.37s,
+    color 0.24s,
     transform 0.33s cubic-bezier(.68,.15,.15,.97),
     opacity 0.23s;
   will-change: transform, opacity;
@@ -32,13 +34,30 @@
   pointer-events: auto;
 }
 
-/* When overlay menu is open, fade out navbar visually (but keep DOM for accessibility) */
 .navbar.overlay-open {
   opacity: 0;
   pointer-events: none;
 }
 
-/* Scroll progress bar at the very top */
+.navbar.scrolled {
+  background: rgba(255, 245, 229, 0.84); 
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  box-shadow: 0 4px 32px #eeb88d25;
+}
+
+.navbar.scrolled .navbar-logo-text {
+  color: #b95c06; 
+}
+.navbar.scrolled .navbar-links-desktop a {
+  color: #c36f46; 
+}
+.navbar.scrolled .hamburger-icon,
+.navbar.scrolled .hamburger-icon::before,
+.navbar.scrolled .hamburger-icon::after {
+  background: #b95c06;
+}
+
 .navbar-progress-bar {
   position: absolute;
   left: 0; top: 0;
@@ -83,6 +102,7 @@
   letter-spacing: 1.3px;
   font-weight: 800;
   text-shadow: 0 2px 8px #fff8e523;
+  transition: color 0.23s;
 }
 
 .navbar-links-desktop {
@@ -98,9 +118,10 @@
   font-weight: 500;
   padding: 9px 17px;
   border-radius: 12px;
-  transition: background 0.15s, color 0.16s, box-shadow 0.18s;
+  transition: background 0.15s, color 0.2s, box-shadow 0.18s, text-shadow 0.2s;
   box-shadow: 0 2px 8px #ad5b0012;
   outline: none;
+  text-shadow: 0 2px 16px #2d140570, 0 1px 0 #fff8e5a0;
 }
 .navbar-links-desktop a:hover,
 .navbar-links-desktop a.active,

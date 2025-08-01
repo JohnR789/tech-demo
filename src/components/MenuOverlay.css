@@ -16,7 +16,6 @@
   opacity: 1;
   pointer-events: auto;
 }
-
 .menu-overlay-close {
   position: absolute;
   top: 32px;
@@ -32,7 +31,6 @@
 .menu-overlay-close:hover {
   color: #fff;
 }
-
 .menu-overlay-content {
   flex: 1;
   width: 100vw;
@@ -46,7 +44,6 @@
   position: relative;
   z-index: 3;
 }
-
 .menu-overlay-col.menu-overlay-left {
   flex: 0 1 32vw;
   min-width: 180px;
@@ -59,7 +56,6 @@
   padding-top: 7vh;
   padding-bottom: 7vh;
 }
-
 .menu-overlay-link-row {
   position: relative;
   min-height: 2.8vw;
@@ -89,57 +85,55 @@
   transform: translateX(18px) scale(1.07);
 }
 
-/* Preview Images (unique scatter for each link, no overlap) */
-.menu-overlay-previews-ultra,
-.preview-image {
-  pointer-events: none;
-}
+/* --- Flying Preview Images: Each has its own quadrant --- */
 .preview-image {
   position: fixed;
-  width: 200px;
-  height: 120px;
-  border-radius: 14px;
+  width: 300px;
+  height: 300px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 10px 28px rgba(33,10,2,0.17);
   opacity: 0;
-  animation-fill-mode: forwards;
   background: #1a140e;
   z-index: 22;
 }
 .preview-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;   
+  object-position: center;
   display: block;
-  border-radius: 14px;
+  background: #1a140e;
 }
 
-.ultra-preview-1 {
-  animation: preview-flyin-1 0.53s 0.09s cubic-bezier(.75,.15,.2,1.01) forwards;
+/* Animate image 1: from FAR LEFT to far left */
+.ultra-from-left {
+  animation: fly-in-from-left-slow 1.9s cubic-bezier(.80,.22,.15,1.0) forwards;
 }
-.ultra-preview-2 {
-  animation: preview-flyin-2 0.66s 0.17s cubic-bezier(.66,.13,.32,1.00) forwards;
+@keyframes fly-in-from-left-slow {
+  0%   { opacity: 0; transform: translateX(-110vw) scale(0.7) rotate(-20deg);}
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateX(0) scale(1) rotate(0);}
 }
-.ultra-preview-3 {
-  animation: preview-flyin-3 0.51s 0.26s cubic-bezier(.82,.13,.28,1.01) forwards;
+/* Animate image 2: from TOP to top-center */
+.ultra-from-top {
+  animation: fly-in-from-top-slow 2.2s cubic-bezier(.84,.13,.21,1) forwards;
 }
-
-@keyframes preview-flyin-1 {
-  0%   { opacity: 0; transform: translate(-260px, -180px) scale(0.85) rotate(-16deg);}
-  70%  { opacity: 1; }
-  100% { opacity: 1; transform: none; }
-}
-@keyframes preview-flyin-2 {
-  0%   { opacity: 0; transform: translate(340px, 180px) scale(0.89) rotate(19deg);}
-  70%  { opacity: 1; }
-  100% { opacity: 1; transform: none; }
-}
-@keyframes preview-flyin-3 {
-  0%   { opacity: 0; transform: translate(0px, 340px) scale(0.85) rotate(-14deg);}
-  70%  { opacity: 1; }
-  100% { opacity: 1; transform: none; }
+@keyframes fly-in-from-top-slow {
+  0%   { opacity: 0; transform: translateY(-88vh) scale(0.7) rotate(-8deg);}
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0) scale(1) rotate(0);}
 }
 
+/* Animate image 3: from FAR RIGHT to far right */
+.ultra-from-right {
+  animation: fly-in-from-right-slow 2.1s cubic-bezier(.85,.22,.15,1.0) forwards;
+}
+@keyframes fly-in-from-right-slow {
+  0%   { opacity: 0; transform: translateX(120vw) scale(0.7) rotate(15deg);}
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateX(0) scale(1) rotate(0);}
+}
 
 /* --- Contact Button (CIRCLE) --- */
 .menu-overlay-contact-btn-right {
@@ -214,7 +208,7 @@
 
 /* Responsive tweaks */
 @media (max-width: 1200px) {
-  .preview-image { width: 110px; height: 66px;}
+  .preview-image { width: 140px; height: 140px;}
   .menu-overlay-col.menu-overlay-left { max-width: 218px; }
   .menu-overlay-contact-leaf-btn,
   .contact-btn-leaf { width: 110px; height: 110px;}
@@ -224,7 +218,7 @@
   .menu-overlay-content { gap: 1vw; padding: 0 1vw;}
   .menu-overlay-contact-leaf-btn,
   .contact-btn-leaf { width: 86px; height: 86px;}
-  .preview-image { width: 80px; height: 48px;}
+  .preview-image { width: 84px; height: 84px;}
   .menu-overlay-contact-btn-right { margin-right: 10px; }
 }
 @media (max-width: 700px) {
@@ -238,9 +232,13 @@
   .menu-overlay-col.menu-overlay-left { align-items: center !important; }
   .menu-overlay-link { font-size: 1.09rem; text-align: center;}
   .menu-overlay-link-row { min-height: 50px; margin-bottom: 1vw;}
-  .preview-image { width: 56px; height: 32px;}
+  .preview-image { width: 52px; height: 52px;}
   .menu-overlay-contact-leaf-btn,
   .contact-btn-leaf { width: 46px; height: 46px;}
   .menu-overlay-contact-btn-right { justify-content: center; margin-right: 0; height: auto; }
 }
+
+
+
+
 

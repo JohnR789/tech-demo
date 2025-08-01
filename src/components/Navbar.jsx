@@ -3,33 +3,41 @@ import { Link, useLocation } from "react-router-dom";
 import MenuOverlay from "./MenuOverlay";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ heroRef }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   const lastScroll = useRef(window.scrollY);
 
   const location = useLocation();
 
-  // Floating nav logic (hide on scroll down, show on scroll up)
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
+      if (heroRef && heroRef.current) {
+        const heroBottom = heroRef.current.getBoundingClientRect().bottom;
+        setScrolled(heroBottom <= 0);
+      } else {
+        setScrolled(window.scrollY > 60);
+      }
+
+      // Show/hide on scroll
       const current = window.scrollY;
       if (current > lastScroll.current && current > 90 && !menuOpen) {
-        setVisible(false); 
+        setVisible(false);
       } else {
-        setVisible(true); 
+        setVisible(true);
       }
       lastScroll.current = current;
 
-      // Scroll progress bar logic
+      // Progress bar
       const docHeight = document.body.scrollHeight - window.innerHeight;
-      let scrolled = 0;
+      let scrolledPct = 0;
       if (docHeight > 0) {
-        scrolled = (current / docHeight) * 100;
+        scrolledPct = (current / docHeight) * 100;
       }
-      setScrollProgress(scrolled);
+      setScrollProgress(scrolledPct);
 
       ticking = false;
     };
@@ -42,10 +50,10 @@ const Navbar = () => {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    handleScroll(); 
     return () => window.removeEventListener("scroll", onScroll);
-  }, [menuOpen]);
+  }, [menuOpen, heroRef]);
 
-  // Prevent background scroll when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = "hidden";
@@ -58,12 +66,13 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`navbar${menuOpen ? " overlay-open" : ""}${
-          visible ? " show" : " hide-up"
-        }`}
+        className={
+          `navbar${menuOpen ? " overlay-open" : ""}` +
+          `${visible ? " show" : " hide-up"}` +
+          `${scrolled ? " scrolled" : ""}`
+        }
         aria-label="Main Navigation"
       >
-        {/* Scroll progress bar */}
         <div
           className="navbar-progress-bar"
           style={{ width: `${scrollProgress}%` }}
@@ -106,5 +115,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 
 

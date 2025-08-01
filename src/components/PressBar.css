@@ -46,7 +46,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  min-width: 200%; /* Must be 2x the viewport for seamless scroll */
+  min-width: 200%; 
   animation: pressbar-scroll 30s linear infinite;
 }
 
@@ -55,7 +55,6 @@
   100% { transform: translateX(-50%); }
 }
 
-/* EDGE-TO-EDGE */
 .pressbar-logo-wrap {
   flex: 1 1 0;
   display: flex;
@@ -96,7 +95,6 @@
   align-self: center;
 }
 
-/* Responsive: shrink logo, label spacing, and bar */
 @media (max-width: 900px) {
   .pressbar-label { margin-right: 9px; margin-left: 8px; font-size: 0.95rem;}
   .pressbar-logo-wrap { height: 47px; }

@@ -1,14 +1,12 @@
-/* --- PAGE WRAPPER --- */
 .autumn-communities-page {
   min-height: 100vh;
   background: linear-gradient(180deg, #fff6ed 0%, #fbe4c1 60%, #eeb88d 100%);
   font-family: 'Inter', sans-serif;
-  padding-top: 84px; /* offset for fixed navbar/header */
+  padding-top: 84px; 
   position: relative;
   z-index: 0;
 }
 
-/* --- INTRO --- */
 .autumn-communities-intro {
   display: flex;
   justify-content: center;
@@ -59,12 +57,10 @@
   }
 }
 
-/* --- COMMUNITIES GRID (let Communities.jsx or .css handle card specifics) --- */
 .communities-section {
   padding-bottom: 60px;
 }
 
-/* --- FOOTER --- */
 .autumn-footer {
   text-align: center;
   font-size: 1.07rem;
@@ -79,7 +75,6 @@
   box-shadow: 0 -2px 30px #eeb88d19;
 }
 
-/* --- EXTRAS --- */
 .autumn-footer {
   -webkit-user-select: none;
   user-select: none;

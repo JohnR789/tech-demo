@@ -25,7 +25,6 @@ const PressBar = () => (
               {i !== pressLogos.length - 1 && <div className="pressbar-divider" />}
             </React.Fragment>
           ))}
-          {/* Clone logos for seamless looping */}
           {pressLogos.map((logo, i) => (
             <React.Fragment key={logo.alt + "-clone"}>
               <div className="pressbar-logo-wrap">
