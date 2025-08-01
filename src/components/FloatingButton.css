@@ -1,0 +1,46 @@
+/* src/components/FloatingButton.css */
+.floating-request-btn {
+  position: fixed;
+  bottom: 32px;
+  left: 32px; /* <-- bottom left! */
+  z-index: 9999;
+  background: linear-gradient(135deg, #aa8453, #73452c 90%);
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  box-shadow: 0 6px 32px rgba(80,40,10,0.18);
+  padding: 0.85rem 1.5rem 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.17s cubic-bezier(.61,.17,.58,.9), box-shadow 0.17s;
+}
+
+.floating-request-btn:hover, .floating-request-btn:focus {
+  transform: scale(1.06);
+  box-shadow: 0 12px 40px rgba(80,40,10,0.23);
+  outline: none;
+}
+
+.calendar-icon {
+  font-size: 1.5em;
+}
+
+.floating-request-text {
+  margin-left: 0.7em;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 600px) {
+  .floating-request-btn {
+    font-size: 0.95rem;
+    padding: 0.65rem 1rem 0.65rem 0.85rem;
+    bottom: 16px;
+    left: 16px;
+  }
+  .floating-request-text {
+    display: none;
+  }
+}
