@@ -1,5 +1,4 @@
 import React from "react";
-import "./Listings.css";
 
 const listings = [
   {
