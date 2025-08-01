@@ -148,27 +148,34 @@ const MenuOverlay = ({ open, onClose }) => {
                 opacity="0.95"
                 filter="url(#circle-glow)"
               />
-              <text
-                x="60"
-                y="66"
-                textAnchor="middle"
-                alignmentBaseline="middle"
-                fontFamily="'Montserrat', 'Futura', 'Arial', sans-serif"
-                fontSize="14"
-                fill="url(#contact-grad)"
-                letterSpacing="0.36em"
-                fontWeight="400"
-                style={{
-                  pointerEvents: "none",
-                  textTransform: "uppercase",
-                  fontVariant: "all-small-caps",
-                }}
-              >Contact</text>
+              <foreignObject x="0" y="0" width="120" height="120">
+                <div
+                  style={{
+                    width: "120px",
+                    height: "120px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textTransform: "uppercase",
+                    fontFamily: "'Montserrat', 'Futura', 'Arial', sans-serif",
+                    fontSize: "12px",
+                    letterSpacing: "0.36em",
+                    fontWeight: 400,
+                    color: "transparent",
+                    background: "none",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                    WebkitUserSelect: "none",
+                    backgroundImage: "linear-gradient(90deg, #eeb88d, #b95c06)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  CONTACT
+                </div>
+              </foreignObject>
               <defs>
-                <linearGradient id="contact-grad" x1="0" y1="70" x2="120" y2="70" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#eeb88d"/>
-                  <stop offset="1" stopColor="#b95c06"/>
-                </linearGradient>
                 <filter id="circle-glow" x="-20" y="-20" width="160" height="160">
                   <feDropShadow dx="0" dy="0" stdDeviation="2.3" floodColor="#FFD699" floodOpacity="0.32"/>
                   <feDropShadow dx="0" dy="0" stdDeviation="7" floodColor="#fff8e0" floodOpacity="0.09"/>
@@ -183,4 +190,3 @@ const MenuOverlay = ({ open, onClose }) => {
 };
 
 export default MenuOverlay;
-

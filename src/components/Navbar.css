@@ -97,12 +97,14 @@
 
 .navbar-logo-text {
   font-family: 'Playfair Display', serif;
-  font-size: 1.32rem;
+  font-size: 2.0rem;
   color: #eeb88d;
   letter-spacing: 1.3px;
   font-weight: 800;
   text-shadow: 0 2px 8px #fff8e523;
   transition: color 0.23s;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .navbar-links-desktop {
@@ -110,27 +112,39 @@
   gap: 36px;
   align-items: center;
 }
+
+/* --- Plain, unstyled desktop nav links --- */
 .navbar-links-desktop a {
   font-family: 'Inter', sans-serif;
   font-size: 1.08rem;
   color: #fff7e6;
   text-decoration: none;
   font-weight: 500;
-  padding: 9px 17px;
-  border-radius: 12px;
-  transition: background 0.15s, color 0.2s, box-shadow 0.18s, text-shadow 0.2s;
-  box-shadow: 0 2px 8px #ad5b0012;
+  padding: 0; 
+  border-radius: 0;
+  background: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
   outline: none;
-  text-shadow: 0 2px 16px #2d140570, 0 1px 0 #fff8e5a0;
+  transition: color 0.2s;
+}
+.navbar.scrolled .navbar-links-desktop a {
+  color: #c36f46;
+  background: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 .navbar-links-desktop a:hover,
 .navbar-links-desktop a.active,
 .navbar-links-desktop a:focus {
   color: #eeb88d;
-  background: #fff6ed12;
-  box-shadow: 0 4px 22px #eeb88d22;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  text-shadow: none !important;
 }
 
+/* --------- HAMBURGER ICON + ACCORDION ANIMATION --------- */
 .navbar-hamburger {
   background: none;
   border: none;
@@ -147,23 +161,71 @@
 .hamburger-icon::before,
 .hamburger-icon::after {
   display: block;
-  width: 32px; height: 3.7px;
+  width: 32px;
+  height: 3.7px;
   background: #eeb88d;
   border-radius: 3px;
   position: relative;
-  transition: all 0.23s cubic-bezier(.68,.18,.44,1.12);
+  transition:
+    width 0.23s cubic-bezier(.68,.18,.44,1.12),
+    transform 0.27s cubic-bezier(.68,.18,.44,1.12),
+    background 0.18s,
+    top 0.27s cubic-bezier(.68,.18,.44,1.12);
 }
 .hamburger-icon::before,
 .hamburger-icon::after {
   content: "";
   position: absolute;
   left: 0;
-  width: 32px; height: 3.7px;
+  width: 32px;
+  height: 3.7px;
   background: #eeb88d;
   border-radius: 3px;
+  transition:
+    width 0.23s cubic-bezier(.68,.18,.44,1.12),
+    transform 0.27s cubic-bezier(.68,.18,.44,1.12),
+    background 0.18s,
+    top 0.27s cubic-bezier(.68,.18,.44,1.12);
 }
 .hamburger-icon::before { top: -10px; }
 .hamburger-icon::after  { top: 10px;  }
+
+/* ACCORDION EFFECT ON HOVER (and focus for accessibility) */
+.navbar-hamburger:hover .hamburger-icon,
+.navbar-hamburger:focus .hamburger-icon {
+  width: 24px;
+}
+.navbar-hamburger:hover .hamburger-icon::before,
+.navbar-hamburger:hover .hamburger-icon::after,
+.navbar-hamburger:focus .hamburger-icon::before,
+.navbar-hamburger:focus .hamburger-icon::after {
+  width: 18px;
+}
+.navbar-hamburger:hover .hamburger-icon::before,
+.navbar-hamburger:focus .hamburger-icon::before {
+  top: -4px;
+}
+.navbar-hamburger:hover .hamburger-icon::after,
+.navbar-hamburger:focus .hamburger-icon::after {
+  top: 4px;
+}
+
+/* Reset on mouse leave/focus out */
+.navbar-hamburger:not(:hover) .hamburger-icon,
+.navbar-hamburger:not(:focus) .hamburger-icon {
+  width: 32px;
+}
+.navbar-hamburger:not(:hover) .hamburger-icon::before,
+.navbar-hamburger:not(:hover) .hamburger-icon::after,
+.navbar-hamburger:not(:focus) .hamburger-icon::before,
+.navbar-hamburger:not(:focus) .hamburger-icon::after {
+  width: 32px;
+  top: -10px;
+}
+.navbar-hamburger:not(:hover) .hamburger-icon::after,
+.navbar-hamburger:not(:focus) .hamburger-icon::after {
+  top: 10px;
+}
 
 @media (max-width: 900px) {
   .navbar-links-desktop { display: none; }

@@ -84,7 +84,6 @@
   opacity: 1;
   transform: translateX(18px) scale(1.07);
 }
-
 /* --- Flying Preview Images: Each has its own quadrant --- */
 .preview-image {
   position: fixed;
@@ -100,12 +99,11 @@
 .preview-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;   
+  object-fit: contain;
   object-position: center;
   display: block;
   background: #1a140e;
 }
-
 /* Animate image 1: from FAR LEFT to far left */
 .ultra-from-left {
   animation: fly-in-from-left-slow 1.9s cubic-bezier(.80,.22,.15,1.0) forwards;
@@ -124,7 +122,6 @@
   60%  { opacity: 1; }
   100% { opacity: 1; transform: translateY(0) scale(1) rotate(0);}
 }
-
 /* Animate image 3: from FAR RIGHT to far right */
 .ultra-from-right {
   animation: fly-in-from-right-slow 2.1s cubic-bezier(.85,.22,.15,1.0) forwards;
@@ -134,7 +131,6 @@
   60%  { opacity: 1; }
   100% { opacity: 1; transform: translateX(0) scale(1) rotate(0);}
 }
-
 /* --- Contact Button (CIRCLE) --- */
 .menu-overlay-contact-btn-right {
   flex: 1 0 0;
@@ -198,14 +194,13 @@
 .contact-btn-leaf text {
   text-transform: uppercase;
   font-family: 'Montserrat', 'Futura', 'Arial', sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   letter-spacing: 0.36em;
   font-weight: 400;
   fill: url(#contact-grad);
   paint-order: stroke fill;
   pointer-events: none;
 }
-
 /* Responsive tweaks */
 @media (max-width: 1200px) {
   .preview-image { width: 140px; height: 140px;}

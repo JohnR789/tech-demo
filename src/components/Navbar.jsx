@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import MenuOverlay from "./MenuOverlay";
 import "./Navbar.css";
 
+// Accepts heroRef as prop
 const Navbar = ({ heroRef }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -13,8 +14,8 @@ const Navbar = ({ heroRef }) => {
   const location = useLocation();
 
   useEffect(() => {
-    let ticking = false;
     const handleScroll = () => {
+      // If heroRef provided, use its position; otherwise fallback to pixel threshold
       if (heroRef && heroRef.current) {
         const heroBottom = heroRef.current.getBoundingClientRect().bottom;
         setScrolled(heroBottom <= 0);
@@ -22,7 +23,6 @@ const Navbar = ({ heroRef }) => {
         setScrolled(window.scrollY > 60);
       }
 
-      // Show/hide on scroll
       const current = window.scrollY;
       if (current > lastScroll.current && current > 90 && !menuOpen) {
         setVisible(false);
@@ -31,27 +31,18 @@ const Navbar = ({ heroRef }) => {
       }
       lastScroll.current = current;
 
-      // Progress bar
+      // Scroll progress bar logic
       const docHeight = document.body.scrollHeight - window.innerHeight;
       let scrolledPct = 0;
       if (docHeight > 0) {
         scrolledPct = (current / docHeight) * 100;
       }
       setScrollProgress(scrolledPct);
-
-      ticking = false;
     };
 
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(handleScroll);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    handleScroll(); 
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check in case user reloads scrolled down
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [menuOpen, heroRef]);
 
   useEffect(() => {
